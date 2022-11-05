@@ -6,9 +6,11 @@ using System.Web.Mvc;
 
 using SERVIS_WEB_PROYECTO.Entity;
 using SERVIS_WEB_PROYECTO.Models;
+using SERVIS_WEB_PROYECTO.Permisos;
 
 namespace SERVIS_WEB_PROYECTO.Controllers
 {
+    [ValidarSesion]
     public class AlumnoController : Controller
     {
         // GET: Alumno
