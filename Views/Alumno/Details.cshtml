@@ -1,0 +1,82 @@
+﻿@model SERVIS_WEB_PROYECTO.Entity.Alumno
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Alumno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apeAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apeAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dniAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dniAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correoAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correoAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.celuAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.celuAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
