@@ -4,12 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2 class="text-center">LISTA DE ALUMNOS</h2>
+<br />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo Alumno", "Create",null,new {@class="btn btn-success"})
 </p>
-<table class="table">
+<br />
+<table class="table table-bordered table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.codAlumno)
@@ -65,9 +66,9 @@
             @Html.DisplayFor(modelItem => item.estado)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id= item.codAlumno}) |
-            @Html.ActionLink("Details", "Details", new { id = item.codAlumno }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.codAlumno })
+            @Html.ActionLink("Edit", "Edit", new { id= item.codAlumno}, new {@class="btn btn-info"})
+            @Html.ActionLink("Details", "Details", new { id = item.codAlumno }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.codAlumno }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
