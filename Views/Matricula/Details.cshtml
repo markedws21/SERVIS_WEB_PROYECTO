@@ -1,0 +1,59 @@
+﻿
+@model SERVIS_WEB_PROYECTO.Entity.Matricula
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-center">DETALLES</h2>
+
+<div>
+    <h4>Matricula</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codMatricula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codMatricula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idCarrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idCarrera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ciclo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ciclo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idSede)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idSede)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.codMatricula }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Regresar", "Index")
+</p>

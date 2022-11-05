@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SERVIS_WEB_PROYECTO.Entity.Matricula>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">:::: LISTA DE MATRICULA ::::</h2>
+<br />
+<p>
+    @Html.ActionLink("Nueva Matricula", "Create", null, new { @class = "btn btn-success" })
+</p>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codMatricula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idCarrera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ciclo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idSede)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.codMatricula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codAlumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idCarrera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ciclo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idSede)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.codMatricula }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Detalles", "Details", new { id = item.codMatricula }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.codMatricula }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
