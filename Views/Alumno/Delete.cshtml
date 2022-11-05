@@ -1,0 +1,88 @@
+﻿@model SERVIS_WEB_PROYECTO.Entity.Alumno
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Alumno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apeAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apeAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dniAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dniAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correoAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correoAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.celuAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.celuAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

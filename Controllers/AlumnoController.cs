@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,6 +16,7 @@ namespace SERVIS_WEB_PROYECTO.Controllers
     {
         // GET: Alumno
         AlumnoDAO alum = new AlumnoDAO();
+
         public ActionResult Index()
         {
             return View(alum.AlumnoListar().ToList());
@@ -70,6 +72,25 @@ namespace SERVIS_WEB_PROYECTO.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Alumno alumnno = alum.BuscarAlumno(id);
+            if(alumnno == null)
+            {
+                return HttpNotFound();
+            }
+            return View(alumnno);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Alumno alumno = alum.BuscarAlumno(id);
+            alum.Eliminar(alumno.codAlumno);
+            return RedirectToAction("Index");
+
         }
 
 

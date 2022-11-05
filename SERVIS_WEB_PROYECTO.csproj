@@ -194,6 +194,7 @@
     <Content Include="Views\Matricula\Create.cshtml" />
     <Content Include="Views\Matricula\Edit.cshtml" />
     <Content Include="Views\Matricula\Details.cshtml" />
+    <Content Include="Views\Alumno\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
