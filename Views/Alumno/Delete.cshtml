@@ -4,11 +4,10 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="text-center">ELIMINAR</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="text-center">Seguro que deseas eliminar el alumno?</h3>
 <div>
-    <h4>Alumno</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -80,9 +79,9 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="text-center">
+            <input type="submit" value="Si" class="btn btn-danger" /> |
+            @Html.ActionLink("No", "Index", null, new {@class="btn btn-success"})
         </div>
     }
 </div>
