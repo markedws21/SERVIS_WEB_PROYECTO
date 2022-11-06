@@ -344,15 +344,12 @@
     <Content Include="Views\Profesor\Details.cshtml" />
     <Content Include="Views\Profesor\Edit.cshtml" />
     <Content Include="Views\Alumno\Delete.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Asignatura\Index.cshtml" />
     <Content Include="Views\Asignatura\Details.cshtml" />
     <Content Include="Views\Asignatura\Edit.cshtml" />
     <Content Include="Views\Asignatura\Create.cshtml" />
     <Content Include="Views\Asignatura\Delete.cshtml" />
-=======
     <Content Include="Views\Profesor\Delete.cshtml" />
->>>>>>> c1efca72f71513109dd4d94032e4024d0ff3cb48
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
