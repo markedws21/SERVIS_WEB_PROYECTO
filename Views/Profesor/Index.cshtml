@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="text-center bg-warning">LISTADO DE PROFESORES</h2>
+<h2 class="text-center bg-warning" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">LISTADO DE PROFESORES</h2>
 <br />
 <p class="col-sm-offset-5">
-    @Html.ActionLink("Nuevo Profesor", "Create", null, new { @class = "btn btn-chocolate" })
+    @Html.ActionLink("NUEVO PROFESOR", "Create", null, new { @class = "btn btn-chocolate" })
 </p>
 <br />
 <table class="table table-condensed tab-content">
@@ -54,9 +54,9 @@
             @Html.DisplayFor(modelItem => item.celular)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.codProf }) |
-            @Html.ActionLink("Detalles", "Details", new {  id=item.codProf  }, new { @class = "btn btn-naranja" }) |
-            @Html.ActionLink("Eliminar", "Delete", new {  id=item.codProf }, new { @class = "btn btn-verde" })
+            @Html.ActionLink("EDITAR", "Edit", new { id = item.codProf }, new { @class = "btn btn-celeste" }) |
+            @Html.ActionLink("DETALLES", "Details", new {  id=item.codProf  }, new { @class = "btn btn-verde" }) |
+            @Html.ActionLink("ELIMINAR", "Delete", new {  id=item.codProf }, new { @class = "btn btn-naranja" })
         </td>
     </tr>
 }

@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 class="text-center bg-success" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">EDITAR DATOS DE PROFESOR</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Profesor</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -65,8 +64,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-                @Html.ActionLink("Back to List", "Index")
+                <input type="submit" value="EDITAR" class="btn btn-warning" />
+                @Html.ActionLink("BACK TO LIST", "Index",null, new { @class = "btn btn-ga" })
             </div>
         </div>
     </div>

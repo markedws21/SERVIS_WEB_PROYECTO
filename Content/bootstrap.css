@@ -3288,6 +3288,7 @@ fieldset[disabled] .btn-primary.focus {
     color: white;
     background-color: cadetblue;
 }
+
 .btn-success:focus,
 .btn-success.focus {
   color: #fff;

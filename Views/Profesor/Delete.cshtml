@@ -1,12 +1,13 @@
 ﻿@model SERVIS_WEB_PROYECTO.Entity.Profesor
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2 class="text-center bg-success" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">DETALLES DE PROFESOR</h2>
+<h2 class="text-center bg-success" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">ELMINAR PROFESOR</h2>
 
-<div class="table table-striped">
+<h3 class="text-center">¿Estás seguro de que quieres eliminar este registro?</h3>
+<div>
     <hr />
     <dl class="dl-horizontal">
         <dt class="text-danger" style="height:30px">
@@ -58,8 +59,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color col-sm-offset-1">
+            <input type="submit" value="Delete" class="btn btn-naranja" /> |
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
+        </div>
+    }
 </div>
-<p class="col-sm-offset-1">
-    @Html.ActionLink("EDITAR", "Edit", new {  id = Model.codProf  }, new { @class = "btn btn-chocolate" }) |
-    @Html.ActionLink("BACK TO LIST", "Index", null, new { @class = "btn btn-success" })
-</p>
