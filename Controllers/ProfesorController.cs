@@ -68,5 +68,42 @@ namespace SERVIS_WEB_PROYECTO.Controllers
                 return View();
             }
         }
+        public ActionResult Delete(int id)
+        {
+            Profesor profe = prof.BuscarProfesor(id);
+            if(profe == null)
+            {
+                return HttpNotFound();
+            }
+            return View(profe);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Profesor profe = prof.BuscarProfesor(id);
+            prof.Eliminar(profe.codProf);
+            return RedirectToAction("Index");
+        }
+        /*
+         public ActionResult Delete(int id)
+        {
+            Alumno alumnno = alum.BuscarAlumno(id);
+            if(alumnno == null)
+            {
+                return HttpNotFound();
+            }
+            return View(alumnno);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Alumno alumno = alum.BuscarAlumno(id);
+            alum.Eliminar(alumno.codAlumno);
+            return RedirectToAction("Index");
+
+        }
+         */
     }
 }

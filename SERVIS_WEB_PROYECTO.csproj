@@ -339,8 +339,8 @@
     <Content Include="Views\Profesor\Create.cshtml" />
     <Content Include="Views\Profesor\Details.cshtml" />
     <Content Include="Views\Profesor\Edit.cshtml" />
-
     <Content Include="Views\Alumno\Delete.cshtml" />
+    <Content Include="Views\Profesor\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

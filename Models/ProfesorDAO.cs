@@ -74,6 +74,24 @@ namespace SERVIS_WEB_PROYECTO.Models
             return pro;
         }
 
+        public void Eliminar(int cod)
+        {
+            SqlConnection cn = dbAcceso.ConectaBD();
+            SqlCommand cmd = new SqlCommand("eliminaProfe", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@cod", cod);
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch(SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
         public void InsertaProfesor(Profesor p)
         {
             SqlConnection cn = dbAcceso.ConectaBD();

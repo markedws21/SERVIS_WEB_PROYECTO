@@ -14,5 +14,7 @@ namespace SERVIS_WEB_PROYECTO.Service
         List<T> ProfesorListar();
 
         T BuscarProfesor(int idProf);
+
+        void Eliminar(int cod);
     }
 }
