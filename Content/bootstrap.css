@@ -3268,6 +3268,26 @@ fieldset[disabled] .btn-primary.focus {
   background-color: #5cb85c;
   border-color: #4cae4c;
 }
+.btn-chocolate {
+    color: white;
+    background-color: chocolate;
+}
+.btn-naranja {
+    color: white;
+    background-color: orangered;
+}
+.btn-verde {
+    color: white;
+    background-color: lightseagreen;
+}
+.btn-celeste{
+    color: white;
+    background-color: deepskyblue;
+}
+.btn-ga {
+    color: white;
+    background-color: cadetblue;
+}
 .btn-success:focus,
 .btn-success.focus {
   color: #fff;

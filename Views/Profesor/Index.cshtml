@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SERVIS_WEB_PROYECTO.Entity.Profesor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center bg-warning">LISTADO DE PROFESORES</h2>
+<br />
+<p class="col-sm-offset-5">
+    @Html.ActionLink("Nuevo Profesor", "Create", null, new { @class = "btn btn-chocolate" })
+</p>
+<br />
+<table class="table table-condensed tab-content">
+    <tr class="bg-primary h4">
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.codProf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.celular)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="bg-warning">
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.codProf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dni)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.celular)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.codProf }) |*@
+            @Html.ActionLink("Detalles", "Details", new {  id=item.codProf  }, new { @class = "btn btn-naranja" }) |
+            @Html.ActionLink("Eliminar", "Delete", new {  id=item.codProf }, new { @class = "btn btn-verde" })
+        </td>
+    </tr>
+}
+
+</table>
