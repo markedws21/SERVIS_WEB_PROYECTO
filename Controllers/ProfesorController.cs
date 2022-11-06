@@ -46,9 +46,9 @@ namespace SERVIS_WEB_PROYECTO.Controllers
             }
         }
         
-        public ActionResult Edit(int codigo)
+        public ActionResult Edit(int id)
         {
-            return View(prof.BuscarProfesor(codigo));
+            return View(prof.BuscarProfesor(id));
         }
 
         [HttpPost]
