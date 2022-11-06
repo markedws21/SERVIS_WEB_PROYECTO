@@ -259,11 +259,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
+    <Compile Include="Controllers\AsignaturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\ProfesorController.cs" />
     <Compile Include="DataBase\dbAcceso.cs" />
     <Compile Include="Entity\Alumno.cs" />
+    <Compile Include="Entity\Asignatura.cs" />
     <Compile Include="Entity\Matricula.cs" />
     <Compile Include="Entity\Profesor.cs" />
     <Compile Include="Entity\Usuario.cs" />
@@ -271,6 +273,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AlumnoDAO.cs" />
+    <Compile Include="Models\AsignaturaDAO.cs" />
     <Compile Include="Models\MatriculaDAO.cs" />
     <Compile Include="Models\ProfesorDAO.cs" />
     <Compile Include="Permisos\ValidarSesionAttribute.cs" />
@@ -281,6 +284,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Service\IAlumno.cs" />
+    <Compile Include="Service\IAsignatura.cs" />
     <Compile Include="Service\IMatricula.cs" />
     <Compile Include="Service\IProfesor.cs" />
   </ItemGroup>
@@ -339,8 +343,12 @@
     <Content Include="Views\Profesor\Create.cshtml" />
     <Content Include="Views\Profesor\Details.cshtml" />
     <Content Include="Views\Profesor\Edit.cshtml" />
-
     <Content Include="Views\Alumno\Delete.cshtml" />
+    <Content Include="Views\Asignatura\Index.cshtml" />
+    <Content Include="Views\Asignatura\Details.cshtml" />
+    <Content Include="Views\Asignatura\Edit.cshtml" />
+    <Content Include="Views\Asignatura\Create.cshtml" />
+    <Content Include="Views\Asignatura\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

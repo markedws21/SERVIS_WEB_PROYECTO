@@ -26,8 +26,8 @@ namespace SERVIS_WEB_PROYECTO.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=BDInstituto2;Persist Security Info=True;User ID=sa;" +
-            "Password=sql")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-O8VOBL3;Initial Catalog=BDInstituto2;Persist Security Info=Tr" +
+            "ue;User ID=sa;Password=sql")]
         public string CadenaBD {
             get {
                 return ((string)(this["CadenaBD"]));
