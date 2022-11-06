@@ -335,10 +335,14 @@
     <Content Include="Views\Matricula\Create.cshtml" />
     <Content Include="Views\Matricula\Edit.cshtml" />
     <Content Include="Views\Matricula\Details.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Profesor\Index.cshtml" />
     <Content Include="Views\Profesor\Create.cshtml" />
     <Content Include="Views\Profesor\Details.cshtml" />
     <Content Include="Views\Profesor\Edit.cshtml" />
+=======
+    <Content Include="Views\Alumno\Delete.cshtml" />
+>>>>>>> 652836a2aec44c56e939579c8ad00cee8991e420
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

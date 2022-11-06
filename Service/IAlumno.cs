@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SERVIS_WEB_PROYECTO.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,7 @@ namespace SERVIS_WEB_PROYECTO.Service
         List<T> AlumnoListar();
 
         T BuscarAlumno(int idAlumno);
+
+        void Eliminar(int id);
     }
 }

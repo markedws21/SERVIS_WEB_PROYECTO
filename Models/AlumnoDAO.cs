@@ -7,11 +7,13 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace SERVIS_WEB_PROYECTO.Models
 {
     public class AlumnoDAO : IAlumno<Alumno>
     {
+        
         public void ActualizarAlumno(Alumno p)
         {
             SqlConnection cn = dbAcceso.ConectaBD();
@@ -137,6 +139,22 @@ namespace SERVIS_WEB_PROYECTO.Models
             finally
             {
                 cn.Close();
+            }
+        }
+        public void Eliminar(int id)
+        {
+            SqlConnection cn = dbAcceso.ConectaBD();
+            SqlCommand cmd = new SqlCommand("usp_EliminarAlumno", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@cod", id);
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+                cn.Close();
+            }catch(SqlException ex)
+            {
+                throw ex;
             }
         }
     }
