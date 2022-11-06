@@ -16,11 +16,12 @@ namespace SERVIS_WEB_PROYECTO.Controllers
     {
         // GET: Alumno
         AlumnoDAO alum = new AlumnoDAO();
+
         public ActionResult Index()
         {
             return View(alum.AlumnoListar().ToList());
         }
-        
+
         public ActionResult Details(int id)
         {
             return View(alum.BuscarAlumno(id));
