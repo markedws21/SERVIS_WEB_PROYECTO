@@ -1,0 +1,33 @@
+﻿@model SERVIS_WEB_PROYECTO.Entity.Sede
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sede</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idSede)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idSede)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomSede)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomSede)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

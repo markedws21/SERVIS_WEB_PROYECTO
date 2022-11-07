@@ -263,11 +263,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\ProfesorController.cs" />
+    <Compile Include="Controllers\SedeController.cs" />
     <Compile Include="DataBase\dbAcceso.cs" />
     <Compile Include="Entity\Alumno.cs" />
     <Compile Include="Entity\Asignatura.cs" />
     <Compile Include="Entity\Matricula.cs" />
     <Compile Include="Entity\Profesor.cs" />
+    <Compile Include="Entity\Sede.cs" />
     <Compile Include="Entity\Usuario.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -276,6 +278,7 @@
     <Compile Include="Models\AsignaturaDAO.cs" />
     <Compile Include="Models\MatriculaDAO.cs" />
     <Compile Include="Models\ProfesorDAO.cs" />
+    <Compile Include="Models\SedeDAO.cs" />
     <Compile Include="Permisos\ValidarSesionAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -287,6 +290,7 @@
     <Compile Include="Service\IAsignatura.cs" />
     <Compile Include="Service\IMatricula.cs" />
     <Compile Include="Service\IProfesor.cs" />
+    <Compile Include="Service\ISede.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -350,6 +354,11 @@
     <Content Include="Views\Asignatura\Create.cshtml" />
     <Content Include="Views\Asignatura\Delete.cshtml" />
     <Content Include="Views\Profesor\Delete.cshtml" />
+    <Content Include="Views\Sede\Index.cshtml" />
+    <Content Include="Views\Sede\Details.cshtml" />
+    <Content Include="Views\Sede\Create.cshtml" />
+    <Content Include="Views\Sede\Edit.cshtml" />
+    <Content Include="Views\Sede\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

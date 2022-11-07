@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SERVIS_WEB_PROYECTO.Entity.Sede>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idSede)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nomSede)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idSede)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomSede)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idSede }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Details", "Details", new { id = item.idSede}, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.idSede}, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
