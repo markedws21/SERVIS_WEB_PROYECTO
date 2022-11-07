@@ -26,17 +26,54 @@
                 Mantenimientos
             </div>
             <ul class="list-items">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                <!--#region Menu 1 Funciona Ok - Carlos Vera  -->
+                <li>@Html.ActionLink("Home", "Index", "Home") </li>
                 <li>@Html.ActionLink("Alumno", "Index", "Alumno")</li>
                 <li>@Html.ActionLink("Matricula", "Index", "Matricula")</li>
-                <li>@Html.ActionLink("PROFESOR", "Index", "Profesor")</li>
-                @*<li><a href="#"><i class="fas fa-stream"></i>Features</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i>About us</a></li>
-                    <li><a href="#"><i class="fas fa-globe-asia"></i>Languages</a></li>
-                    <li><a href="#"><i class="fas fa-envelope"></i>Contact us</a></li>*@
+                <li>@Html.ActionLink("Asignaturas", "Index", "Asignatura")</li>
+                <li>@Html.ActionLink("Profesores", "Index", "Profesor") </li>
                 <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                 <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Cerrar Sesion", "CerrarSesion", "Home")</li>
+                <!--#endregion -->
+
+
+                <!--#region Menu 2 No accede a vistas directamente - Carlos Vera -->
+
+                    @*<li><a href="Home"><i class="fas fa-home"></i>Home</a></li>
+                   <li><a href="Alumno"><i class="fas fa-user-graduate"></i>Alumnos</a></li>
+                   <li><a href="Matricula"><i class="fas fa-cube"></i>Matricula</a></li>
+                   <li><a href="Asignatura"><i class="fas fa-book-open"></i>Asignaturas</a></li>
+                   <li><a href="Profesor"><i class="fas fa-user-tie"></i>Profesores</a></li>
+                    <li><a href="/Home/CerrarSesion"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a></li>*@
+
+                <!--#endregion -->
+
+                <!--#region Menu 3 Probando Menu 1 con Iconos  -->
+                     
+                @*<li>@Html.ActionLink("Home", "Index", "Home")
+                <span><a><i class="fas fa-home"></i></a></span></li>
+                <li>@Html.ActionLink("Alumno", "Index", "Alumno")
+                <span><a><i class="fas fa-user-graduate"></i></a></span></li>
+                <li>@Html.ActionLink("Matricula", "Index", "Matricula")
+                <span><a><i class="fas fa-cube"></i></a></span></li>
+                <li>@Html.ActionLink("Asignaturas", "Index", "Asignatura")
+                <span><a><i class="fas fa-book-open"></i></a></span></li>
+                <li>@Html.ActionLink("Profesores", "Index", "Profesor")
+                <span><a><i class="fas fa-user-tie"></i></a></span></li>
+                <li>@Html.ActionLink("Acerca de", "About", "Home")
+                <span><a><i class="fas fa-home"></i></a></span></li>
+                <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                <span><a><i class="fas fa-home"></i></a></span></li>
+                <li>@Html.ActionLink("Cerrar Sesion", "CerrarSesion", "Home")
+                <span><a><i class="fas fa-home"></i></a></span></li>*@
+
+
+                <!--#endregion -->
+
+
+
                 <div class="icons">
                     <a href="#"><i class="fas fa-tint"></i></a>
                     <a href="#"><i class="fas fa-eye-dropper"></i></a>

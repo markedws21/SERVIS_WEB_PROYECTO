@@ -33,5 +33,6 @@ namespace SERVIS_WEB_PROYECTO.Controllers
             Session["usuario"] = null;
             return RedirectToAction("Login", "Acceso");
         }
+      
     }
 }
