@@ -260,6 +260,7 @@
     <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\AsignaturaController.cs" />
+    <Compile Include="Controllers\CarreraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\ProfesorController.cs" />
@@ -267,6 +268,7 @@
     <Compile Include="DataBase\dbAcceso.cs" />
     <Compile Include="Entity\Alumno.cs" />
     <Compile Include="Entity\Asignatura.cs" />
+    <Compile Include="Entity\Carrera.cs" />
     <Compile Include="Entity\Matricula.cs" />
     <Compile Include="Entity\Profesor.cs" />
     <Compile Include="Entity\Sede.cs" />
@@ -276,6 +278,7 @@
     </Compile>
     <Compile Include="Models\AlumnoDAO.cs" />
     <Compile Include="Models\AsignaturaDAO.cs" />
+    <Compile Include="Models\CarreraDAO.cs" />
     <Compile Include="Models\MatriculaDAO.cs" />
     <Compile Include="Models\ProfesorDAO.cs" />
     <Compile Include="Models\SedeDAO.cs" />
@@ -288,6 +291,7 @@
     </Compile>
     <Compile Include="Service\IAlumno.cs" />
     <Compile Include="Service\IAsignatura.cs" />
+    <Compile Include="Service\ICarrera.cs" />
     <Compile Include="Service\IMatricula.cs" />
     <Compile Include="Service\IProfesor.cs" />
     <Compile Include="Service\ISede.cs" />
@@ -360,6 +364,11 @@
     <Content Include="Views\Sede\Create.cshtml" />
     <Content Include="Views\Sede\Edit.cshtml" />
     <Content Include="Views\Sede\Delete.cshtml" />
+    <Content Include="Views\Carrera\Index.cshtml" />
+    <Content Include="Views\Carrera\Details.cshtml" />
+    <Content Include="Views\Carrera\Create.cshtml" />
+    <Content Include="Views\Carrera\Edit.cshtml" />
+    <Content Include="Views\Carrera\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

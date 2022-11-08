@@ -17,6 +17,8 @@ namespace SERVIS_WEB_PROYECTO.Controllers
         // GET: Matricula
         MatriculaDAO matricu = new MatriculaDAO();
         AlumnoDAO alum = new AlumnoDAO();
+        SedeDAO sed = new SedeDAO();
+        CarreraDAO carrera = new CarreraDAO();
         public ActionResult Index()
         {
             return View(matricu.ListarMatricula().ToList());
@@ -29,6 +31,8 @@ namespace SERVIS_WEB_PROYECTO.Controllers
         public ActionResult Create()
         {
             ViewBag.alumnos = new SelectList(alum.AlumnoListar(), "codAlumno", "nomAlumno");
+            ViewBag.sedes = new SelectList(sed.SedeListar(), "idSede", "nomSede");
+            ViewBag.carreras = new SelectList(carrera.CarreraListar(), "idCarrera", "nomCarrera");
             return View();
         }
 
@@ -54,6 +58,8 @@ namespace SERVIS_WEB_PROYECTO.Controllers
         public ActionResult Edit(int id)
         {
             ViewBag.alumnos = new SelectList(alum.AlumnoListar(), "codAlumno", "nomAlumno");
+            ViewBag.sedes = new SelectList(sed.SedeListar(), "idSede", "nomSede");
+            ViewBag.carreras = new SelectList(carrera.CarreraListar(), "idCarrera", "nomCarrera");
             return View(matricu.BuscarMatricula(id));
         }
 
