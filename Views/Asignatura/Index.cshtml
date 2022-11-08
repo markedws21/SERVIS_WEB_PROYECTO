@@ -4,39 +4,69 @@
     ViewBag.Title = "Index";
 }
 
+<!--#region Script para exportar excel - Carlos Vera-->
+<script src="~/Content/FileSaver.js"></script> @*could be downloaded from https://github.com/eligrey/FileSaver.js/blob/master/src/FileSaver.js*@
+<script>
+    function fnExcelReport(id, name) {
+        var tab_text = '<html xmlns: x="urn:schemas-microsoft-com:office:excel">';
+        tab_text = tab_text + '<head><xml><x: ExcelWorkbook><x: ExcelWorksheets><x: ExcelWorksheet>';
+        tab_text = tab_text + '<x: Name>Test Sheet</x: Name>';
+        tab_text = tab_text + '<x: WorksheetOptions><x: Panes></x: Panes></x: WorksheetOptions ></x: ExcelWorksheet > ';
+        tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+        tab_text = tab_text + "<table border='1px' style='color:black'>";
 
-    <h2> <center>ASIGNATURAS</center></h2>
 
-    <p>
-        @Html.ActionLink("Insertar Asignatura", "Create")
-    </p>
-    <table class="table">
+        var exportTable = $('#' + id).clone();
+        exportTable.find('th').last().remove();
+        exportTable.find('html').each(function (index, elem) { $(elem).remove(); });
+        exportTable.find('a').each(function (index, elem) { $(elem).remove(); });
+
+        tab_text = tab_text + exportTable.html();
+        tab_text = tab_text + '</table></body></html>';
+        var fileName = "Asignaturas" + '.xls';
+
+        //Save the file
+        var blob = new Blob([tab_text], { type: "application/vnd.ms-excel;charset=utf-8" })
+        window.saveAs(blob, fileName);
+    }
+</script>
+<!--#endregion -->
+
+
+<h2> <center>ASIGNATURAS</center></h2>
+
+<p>
+    @Html.ActionLink("Insertar Asignatura", "Create")
+    <button class="btn btn-primary" onclick="javascript: fnExcelReport('dataTable', 'data')">Export To Excel</button>
+
+</p>
+<table class="table table-bordered table-striped" id="dataTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idAsignatura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nomAsignatura)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.idAsignatura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nomAsignatura)
-            </th>
-            <th></th>
+            <td>
+                @Html.DisplayFor(modelItem => item.idAsignatura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomAsignatura)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.idAsignatura }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Details", "Details", new { id = item.idAsignatura }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.idAsignatura }, new { @class = "btn btn-danger" })
+            </td>
         </tr>
+    }
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.idAsignatura)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nomAsignatura)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.idAsignatura }, new { @class = "btn btn-info" })
-                    @Html.ActionLink("Details", "Details", new { id = item.idAsignatura }, new { @class = "btn btn-warning" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.idAsignatura }, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
-        }
-
-    </table>
+</table>
 
