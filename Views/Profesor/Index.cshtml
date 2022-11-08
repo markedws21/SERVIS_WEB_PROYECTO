@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="text-center bg-warning" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">LISTADO DE PROFESORES</h2>
+<h2 class="text-dark text-center" style="font-family: 'Bookman Old Style'">LISTADO DE PROFESORES</h2>
 <br />
 <p class="col-sm-offset-5">
     @Html.ActionLink("NUEVO PROFESOR", "Create", null, new { @class = "btn btn-chocolate" })
@@ -33,32 +33,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr class="bg-warning">
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.codProf)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dni)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.celular)
-        </td>
-        <td>
-            @Html.ActionLink("EDITAR", "Edit", new { id = item.codProf }, new { @class = "btn btn-celeste" }) |
-            @Html.ActionLink("DETALLES", "Details", new {  id=item.codProf  }, new { @class = "btn btn-verde" }) |
-            @Html.ActionLink("ELIMINAR", "Delete", new {  id=item.codProf }, new { @class = "btn btn-naranja" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="bg-default">
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.codProf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.celular)
+            </td>
+            <td>
+                @Html.ActionLink("EDITAR", "Edit", new { id = item.codProf }, new { @class = "btn btn-celeste" }) |
+                @Html.ActionLink("DETALLES", "Details", new { id = item.codProf }, new { @class = "btn btn-verde" }) |
+                @Html.ActionLink("ELIMINAR", "Delete", new { id = item.codProf }, new { @class = "btn btn-naranja" })
+            </td>
+        </tr>
+    }
 
 </table>

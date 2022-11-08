@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2 class="text-center bg-success" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">EDITAR DATOS DE PROFESOR</h2>
+<h2 class="text-white text-center bg-info" style="font-family: 'Exotc350 Bd BT'">EDITAR DATOS DE PROFESOR</h2>
 
 
 @using (Html.BeginForm())
@@ -64,8 +64,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="EDITAR" class="btn btn-warning" />
-                @Html.ActionLink("BACK TO LIST", "Index",null, new { @class = "btn btn-ga" })
+                <input type="submit" value="EDITAR" class="btn btn-warning" /> |
+                @Html.ActionLink("BACK TO LIST", "Index", null, new { @class = "btn btn-info" })
             </div>
         </div>
     </div>

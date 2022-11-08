@@ -12,7 +12,7 @@ namespace SERVIS_WEB_PROYECTO.Entity
         public int codProf { get; set; }
         [Display(Name = "NOMBRE")]
         public string nombre { get; set; }
-        [Display(Name = "APELLIDO")]
+        [Display(Name = "APELLIDOS")]
         public string apellido { get; set; }
         [Display(Name = "DNI")]
         public string dni { get; set; }

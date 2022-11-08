@@ -4,12 +4,12 @@
     ViewBag.Title = "Details";
 }
 
-<h2 class="text-center bg-success" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">DETALLES DE PROFESOR</h2>
+<h2 class="text-white text-center bg-success" style="font-family: 'Exotc350 Bd BT'">DETALLES DE PROFESOR</h2>
 
 <div class="table table-striped">
     <hr />
     <dl class="dl-horizontal">
-        <dt class="text-danger" style="height:30px">
+        <dt class="text-success" style="height:30px">
             @Html.DisplayNameFor(model => model.codProf)
         </dt>
 
@@ -17,7 +17,7 @@
             @Html.DisplayFor(model => model.codProf)
         </dd>
 
-        <dt class="text-danger" style="height:30px">
+        <dt class="text-success" style="height:30px">
             @Html.DisplayNameFor(model => model.nombre)
         </dt>
 
@@ -25,7 +25,7 @@
             @Html.DisplayFor(model => model.nombre)
         </dd>
 
-        <dt class="text-danger" style="height:30px">
+        <dt class="text-success" style="height:30px">
             @Html.DisplayNameFor(model => model.apellido)
         </dt>
 
@@ -33,7 +33,7 @@
             @Html.DisplayFor(model => model.apellido)
         </dd>
 
-        <dt class="text-danger" style="height:30px">
+        <dt class="text-success" style="height:30px">
             @Html.DisplayNameFor(model => model.dni)
         </dt>
 
@@ -41,7 +41,7 @@
             @Html.DisplayFor(model => model.dni)
         </dd>
 
-        <dt class="text-danger" style="height:30px">
+        <dt class="text-success" style="height:30px">
             @Html.DisplayNameFor(model => model.correo)
         </dt>
 
@@ -49,7 +49,7 @@
             @Html.DisplayFor(model => model.correo)
         </dd>
 
-        <dt class="text-danger" style="height:30px">
+        <dt class="text-success" style="height:30px">
             @Html.DisplayNameFor(model => model.celular)
         </dt>
 
@@ -60,6 +60,6 @@
     </dl>
 </div>
 <p class="col-sm-offset-1">
-    @Html.ActionLink("EDITAR", "Edit", new {  id = Model.codProf  }, new { @class = "btn btn-chocolate" }) |
+    @Html.ActionLink("EDITAR", "Edit", new {  id = Model.codProf  }, new { @class = "btn btn-warning" }) |
     @Html.ActionLink("BACK TO LIST", "Index", null, new { @class = "btn btn-success" })
 </p>
