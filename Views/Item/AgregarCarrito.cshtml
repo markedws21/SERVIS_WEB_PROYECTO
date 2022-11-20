@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "AgregarCarrito";
+}
+
+<h2 class="text-center alert-success">AGREGANDO LIBROS</h2>
+<br />
+
+    <div class="col-md-4">
+        <h4>Carrera:</h4>
+        @Html.DropDownList("idCarrera", (SelectList)ViewBag.carrera, new { @class = "form-control", @id = "idSelectCarrera" })
+        <br />
+        <br />
+    </div>
+
+    <div class="col-md-4">
+        <h4>Alumno:</h4>
+        @Html.DropDownList("codAlu", (SelectList)ViewBag.alumno, new { @class = "form-control", @id = "idSelectAlumno" })
+        <br />
+        <br />
+    </div>
+
+
+<table class="table table-bordered table-hover">
+    <thead class="bg-success">
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">DESCRIPCION</th>
+            <th class="text-center">PRECIO</th>
+            <th class="text-center">CANTIDAD</th>
+            <th class="text-center">IMAGEN</th>
+            <th class="text-center">SUBTOTAL</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            double total = 0;
+        }
+        @if (Session["item"] != null)
+        {
+            foreach (var item in Session["item"] as List<SERVIS_WEB_PROYECTO.ModeloDatos.Fuente>)
+            {
+                total += (double)(item.Cantidad * item.TBLibro.PRE_Lib);
+        <tr>
+            <td class="text-center" style="padding-top:40px; font-size:15px">@item.TBLibro.IDE_Lib</td>
+            <td class="text-center" style="padding-top:40px; font-size: 15px">@item.TBLibro.DES_Lib</td>
+            <td class="text-center" style="padding-top:40px; font-size: 15px">@String.Format("{0:C1}", item.TBLibro.PRE_Lib)</td>
+            <td class="text-center" style="padding-top:40px; font-size:15px">@item.Cantidad</td>
+            <td class="text-center"><img src="@Url.Content(item.TBLibro.IMG_PRO)" width="90" height="100" style="margin:5px" /></td>
+            <td class="text-center" style="padding-top: 40px; font-size: 15px ">@String.Format("{0:C3}", (item.Cantidad * item.TBLibro.PRE_Lib))</td>
+            <td style="padding-top: 40px" class="text-center">@Html.ActionLink("Eliminar", "Delete", "Item", new { id = item.TBLibro.IDE_Lib }, new { @class = "btn btn-danger btn-sm" })</td>
+
+        </tr>
+            }
+        }
+    </tbody>
+    <tr>
+    </tr>
+    <tfoot>
+        <tr>
+        </tr>
+        <tr>
+            <th colspan="5"> TOTAL</th>
+            <th>@String.Format("{0:C3}", total)</th>
+        </tr>
+    </tfoot>
+</table>
+<br />
+
+<div class="text-center">
+    @Html.ActionLink("Seguir Comprando", "Index", "Libro", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Terminar Compra", null, null, null, new { @class = "btn btn-success", @Id = "idFinalizar" })
+</div>
+
+@section Scripts{
+
+    <script>
+         $(function () {
+             var idCarrera, idAlumno;
+             $('#idSelectCarrera').on('change', function () {
+                 idCarrera = $(this).val();
+                 console.log(idCarrera);
+             });
+             $('#idSelectAlumno').on('change', function () {
+                 idAlumno = $(this).val();
+                 console.log(idAlumno);
+             });
+             $('#idFinalizar').on("click", function (event) {
+                 if (idCarrera != null && idAlumno != null) {
+                     $("#idFinalizar").attr("href", "/Item/FinalizarCompra?idCar=" + idCarrera + "&idAlu=" + idAlumno);
+                 }
+             });
+         });
+    </script>
+
+}
+
+

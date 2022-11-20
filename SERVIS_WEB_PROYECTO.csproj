@@ -51,6 +51,12 @@
     <Reference Include="Azure.Identity, Version=1.6.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>packages\Azure.Identity.1.6.0\lib\netstandard2.0\Azure.Identity.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -139,6 +145,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
@@ -262,19 +269,99 @@
     <Compile Include="Controllers\AsignaturaController.cs" />
     <Compile Include="Controllers\CarreraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\LibroController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\ProfesorController.cs" />
     <Compile Include="Controllers\SedeController.cs" />
     <Compile Include="DataBase\dbAcceso.cs" />
     <Compile Include="Entity\Alumno.cs" />
     <Compile Include="Entity\Asignatura.cs" />
+    <Compile Include="Entity\Boleta.cs" />
     <Compile Include="Entity\Carrera.cs" />
+    <Compile Include="Entity\Libro.cs" />
     <Compile Include="Entity\Matricula.cs" />
     <Compile Include="Entity\Profesor.cs" />
     <Compile Include="Entity\Sede.cs" />
     <Compile Include="Entity\Usuario.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\BOLETA.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\buscaProfe_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\DETALLEBOLETA.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\Fuente.cs" />
+    <Compile Include="ModeloDatos\listaProfe_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\Modelo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\Modelo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\Modelo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelo.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\TBAlumno.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\TBAsignatura.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\TBCarrera.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\TBLibro.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\TBMatricula.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\TBProfesor.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\TBSede.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\usp_BuscarAlumno_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\usp_BuscarAsignatura_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\usp_BuscarMatricula_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\usp_BuscarSede_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\usp_listarAlumno_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\usp_listarAsignatura_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\usp_listarMatricula_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\usp_listarSede_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDatos\Usuarios.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AlumnoDAO.cs" />
     <Compile Include="Models\AsignaturaDAO.cs" />
@@ -307,8 +394,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ModeloDatos\Modelo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Modelo.Context.cs</LastGenOutput>
+      <DependentUpon>Modelo.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModeloDatos\Modelo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Modelo.edmx</DependentUpon>
+      <LastGenOutput>Modelo.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="ModeloDatos\Modelo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Modelo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ModeloDatos\Modelo.edmx.diagram">
+      <DependentUpon>Modelo.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -369,6 +473,9 @@
     <Content Include="Views\Carrera\Create.cshtml" />
     <Content Include="Views\Carrera\Edit.cshtml" />
     <Content Include="Views\Carrera\Delete.cshtml" />
+    <Content Include="Views\Libro\Index.cshtml" />
+    <Content Include="Views\Item\AgregarCarrito.cshtml" />
+    <Content Include="Views\Item\FinalizarCompra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

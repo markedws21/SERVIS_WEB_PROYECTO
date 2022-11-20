@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3f9a0d72d2144cc984828cb197e10a7d" Name="Diagram1">
+        <EntityTypeShape EntityType="BDInstituto2Model.BOLETA" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDInstituto2Model.DETALLEBOLETA" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDInstituto2Model.TBAlumno" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDInstituto2Model.TBAsignatura" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDInstituto2Model.TBCarrera" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDInstituto2Model.TBLibro" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDInstituto2Model.TBMatricula" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDInstituto2Model.TBProfesor" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDInstituto2Model.TBSede" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDInstituto2Model.Usuarios" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="BDInstituto2Model.FK__BOLETA__codAlu__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="BDInstituto2Model.FK__BOLETA__idCarrer__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="BDInstituto2Model.FK__DETALLEBO__NUM_B__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="BDInstituto2Model.FK__DETALLEBO__IDE_L__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="BDInstituto2Model.FK__TBMatricu__codAl__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="BDInstituto2Model.FK__TBLibro__idCarre__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="BDInstituto2Model.FK__TBMatricu__idCar__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="BDInstituto2Model.FK__TBMatricu__idSed__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="BDInstituto2Model.TBCarreraEstudiante" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

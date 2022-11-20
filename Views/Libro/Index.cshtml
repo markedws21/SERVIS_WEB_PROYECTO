@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SERVIS_WEB_PROYECTO.ModeloDatos.TBLibro>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center" style="font-size:50px;  font-family: 'Exotc350 Bd BT'">:: BIBLIOTECA ::</h2>
+<br />
+<table class="table table-bordered table-hover">
+    <thead class="bg-primary">
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center" style="width:180px">DESCRIPCION</th>
+            <th class="text-center" style="width:180px">CARRERA</th>
+            <th class="text-center">PRECIO</th>
+            <th class="text-center" style="width:220px">CANTIDAD</th>
+            <th class="text-center">IMAGEN</th>
+            <th style="width:180px"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td style="padding-top:35px; font-size:18px">@item.IDE_Lib</td>
+                <td style="padding-top:35px; font-size:15px">@item.DES_Lib</td>
+                <td style="padding-top:35px; font-size:15px">@item.TBCarrera.nomCarrera</td>
+                <td style="padding-top:35px; font-size:17px">@String.Format("{0:C1}", item.PRE_Lib)</td>
+                <td style="padding-top:35px"><input type="number" class="form-control numbers" min="0" /></td>
+                <td style="cursor:pointer"><img src="@Url.Content(item.IMG_PRO)" width="80" height="100" style="margin:10px;box-shadow: 10px 12px 15px rgb(128 128 128)"/></td>
+                <td style="padding-top:45px"><a href="#" class="agregar btn-success btn-sm">AGREGAR LIBRO</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $(".agregar").on("click", function (event) {
+                event.preventDefault();
+                var LibroId = $(this).parent().parent().find("td:eq(0)").text();
+                var cantidad = $(this).parent().parent().find("input").val();
+                $.ajax({
+                    url: "@Url.Action("AgregarCarrito", "Item")",
+                    data: { id: LibroId, cantidad: cantidad },
+                    type: "post",
+                    success: function (response) {
+                        window.location.href = "@Url.Action("AgregarCarrito", "Item")";
+                    },
+                    error: function (err, error) {
+                        alert(error);
+                    }
+                });
+            });
+        });
+
+        $(".numbers").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 40]) !== -1 || (e.keyCode == 65 && e.ctrlKey == true) || (e.keyCode >= 35 && e.keyCode <= 39)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    </script>
+    }

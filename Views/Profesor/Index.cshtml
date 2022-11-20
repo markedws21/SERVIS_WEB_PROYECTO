@@ -33,11 +33,11 @@
 <!--#endregion -->
 
 
-<h2 class="text-center bg-warning" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">LISTADO DE PROFESORES</h2>
+<h2 class="text-center" style="font-family: 'Exotc350 Bd BT'">:::LISTADO DE PROFESORES:::</h2>
 <br />
-<p class="col-sm-offset-5">
+<p class="text-center">
     @Html.ActionLink("NUEVO PROFESOR", "Create", null, new { @class = "btn btn-chocolate" })
-    <button class="btn btn-primary" onclick="javascript: fnExcelReport('dataTable', 'data')">Export To Excel</button>
+    <button class="btn btn-primary" onclick="javascript: fnExcelReport('dataTable', 'data')">EXPORT TO EXCEL</button>
 </p>
 <br />
 <table class="table table-condensed tab-content" id="dataTable">
@@ -65,7 +65,7 @@
 
     @foreach (var item in Model)
     {
-        <tr class="bg-warning">
+        <tr>
             <td class="text-center">
                 @Html.DisplayFor(modelItem => item.codProf)
             </td>

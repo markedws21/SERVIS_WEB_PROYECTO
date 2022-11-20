@@ -1,0 +1,1073 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDInstituto2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOLETA">
+          <Key>
+            <PropertyRef Name="NUM_BOL" />
+          </Key>
+          <Property Name="NUM_BOL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FEC_BOL" Type="date" Nullable="false" />
+          <Property Name="idCarrera" Type="int" Nullable="false" />
+          <Property Name="codAlu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLEBOLETA">
+          <Key>
+            <PropertyRef Name="NUM_BOL" />
+            <PropertyRef Name="IDE_Lib" />
+          </Key>
+          <Property Name="NUM_BOL" Type="int" Nullable="false" />
+          <Property Name="IDE_Lib" Type="int" Nullable="false" />
+          <Property Name="CAN_ART" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBAlumno">
+          <Key>
+            <PropertyRef Name="codAlu" />
+          </Key>
+          <Property Name="codAlu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dni" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="celular" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBAsignatura">
+          <Key>
+            <PropertyRef Name="idAsignatura" />
+          </Key>
+          <Property Name="idAsignatura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomAsignatura" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBCarrera">
+          <Key>
+            <PropertyRef Name="idCarrera" />
+          </Key>
+          <Property Name="idCarrera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomCarrera" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDInstituto2.dbo.TBCarreraEstudiante' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="TBCarreraEstudiante">
+          <Key>
+            <PropertyRef Name="idCarrera" />
+            <PropertyRef Name="codAlu" />
+          </Key>
+          <Property Name="idCarrera" Type="int" Nullable="false" />
+          <Property Name="codAlu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBLibro">
+          <Key>
+            <PropertyRef Name="IDE_Lib" />
+          </Key>
+          <Property Name="IDE_Lib" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DES_Lib" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="idCarrera" Type="int" Nullable="false" />
+          <Property Name="PRE_Lib" Type="money" Nullable="false" />
+          <Property Name="IMG_PRO" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TBMatricula">
+          <Key>
+            <PropertyRef Name="codMat" />
+          </Key>
+          <Property Name="codMat" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codAlu" Type="int" Nullable="false" />
+          <Property Name="idCarrera" Type="int" Nullable="false" />
+          <Property Name="ciclo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idSede" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBProfesor">
+          <Key>
+            <PropertyRef Name="codProf" />
+          </Key>
+          <Property Name="codProf" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dni" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="celular" Type="char" MaxLength="9" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBSede">
+          <Key>
+            <PropertyRef Name="idSede" />
+          </Key>
+          <Property Name="idSede" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomSede" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BOLETA__codAlu__25869641">
+          <End Role="TBAlumno" Type="Self.TBAlumno" Multiplicity="1" />
+          <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBAlumno">
+              <PropertyRef Name="codAlu" />
+            </Principal>
+            <Dependent Role="BOLETA">
+              <PropertyRef Name="codAlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BOLETA__idCarrer__24927208">
+          <End Role="TBCarrera" Type="Self.TBCarrera" Multiplicity="1" />
+          <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCarrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="BOLETA">
+              <PropertyRef Name="idCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETALLEBO__IDE_L__29572725">
+          <End Role="TBLibro" Type="Self.TBLibro" Multiplicity="1" />
+          <End Role="DETALLEBOLETA" Type="Self.DETALLEBOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLibro">
+              <PropertyRef Name="IDE_Lib" />
+            </Principal>
+            <Dependent Role="DETALLEBOLETA">
+              <PropertyRef Name="IDE_Lib" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETALLEBO__NUM_B__286302EC">
+          <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="1" />
+          <End Role="DETALLEBOLETA" Type="Self.DETALLEBOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOLETA">
+              <PropertyRef Name="NUM_BOL" />
+            </Principal>
+            <Dependent Role="DETALLEBOLETA">
+              <PropertyRef Name="NUM_BOL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBCarrera__codAl__145C0A3F">
+          <End Role="TBAlumno" Type="Self.TBAlumno" Multiplicity="1" />
+          <End Role="TBCarreraEstudiante" Type="Self.TBCarreraEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBAlumno">
+              <PropertyRef Name="codAlu" />
+            </Principal>
+            <Dependent Role="TBCarreraEstudiante">
+              <PropertyRef Name="codAlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBCarrera__idCar__1367E606">
+          <End Role="TBCarrera" Type="Self.TBCarrera" Multiplicity="1" />
+          <End Role="TBCarreraEstudiante" Type="Self.TBCarreraEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCarrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="TBCarreraEstudiante">
+              <PropertyRef Name="idCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBLibro__idCarre__21B6055D">
+          <End Role="TBCarrera" Type="Self.TBCarrera" Multiplicity="1" />
+          <End Role="TBLibro" Type="Self.TBLibro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCarrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="TBLibro">
+              <PropertyRef Name="idCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBMatricu__codAl__1DE57479">
+          <End Role="TBAlumno" Type="Self.TBAlumno" Multiplicity="1" />
+          <End Role="TBMatricula" Type="Self.TBMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBAlumno">
+              <PropertyRef Name="codAlu" />
+            </Principal>
+            <Dependent Role="TBMatricula">
+              <PropertyRef Name="codAlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBMatricu__idCar__1CF15040">
+          <End Role="TBCarrera" Type="Self.TBCarrera" Multiplicity="1" />
+          <End Role="TBMatricula" Type="Self.TBMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCarrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="TBMatricula">
+              <PropertyRef Name="idCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBMatricu__idSed__1ED998B2">
+          <End Role="TBSede" Type="Self.TBSede" Multiplicity="1" />
+          <End Role="TBMatricula" Type="Self.TBMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBSede">
+              <PropertyRef Name="idSede" />
+            </Principal>
+            <Dependent Role="TBMatricula">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="actualizaProfe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido" Type="varchar" Mode="In" />
+          <Parameter Name="dni" Type="char" Mode="In" />
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+          <Parameter Name="celular" Type="char" Mode="In" />
+        </Function>
+        <Function Name="buscaProfe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod" Type="int" Mode="In" />
+        </Function>
+        <Function Name="eliminaProfe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insertaProfe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido" Type="varchar" Mode="In" />
+          <Parameter Name="dni" Type="char" Mode="In" />
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+          <Parameter Name="celular" Type="char" Mode="In" />
+        </Function>
+        <Function Name="listaProfe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_RegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Clave" Type="varchar" Mode="In" />
+          <Parameter Name="Registrado" Type="bit" Mode="InOut" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Clave" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ActualizarAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nom" Type="varchar" Mode="In" />
+          <Parameter Name="ape" Type="varchar" Mode="In" />
+          <Parameter Name="dire" Type="varchar" Mode="In" />
+          <Parameter Name="dni" Type="char" Mode="In" />
+          <Parameter Name="corre" Type="varchar" Mode="In" />
+          <Parameter Name="fono" Type="char" Mode="In" />
+          <Parameter Name="esta" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ActualizarAsignatura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idAsignatura" Type="int" Mode="In" />
+          <Parameter Name="nomAsignatura" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ActualizarMatricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codMat" Type="int" Mode="In" />
+          <Parameter Name="codAlu" Type="int" Mode="In" />
+          <Parameter Name="idCarr" Type="int" Mode="In" />
+          <Parameter Name="ciclo" Type="varchar" Mode="In" />
+          <Parameter Name="idSede" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ActualizarSede" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idSede" Type="int" Mode="In" />
+          <Parameter Name="nomSede" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_BuscarAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_BuscarAsignatura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idAsignatura" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_BuscarMatricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idMat" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_BuscarSede" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idSede" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_EliminarAsignatura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idAsignatura" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_EliminarSede" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idSede" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_InsertarAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nom" Type="varchar" Mode="In" />
+          <Parameter Name="ape" Type="varchar" Mode="In" />
+          <Parameter Name="dire" Type="varchar" Mode="In" />
+          <Parameter Name="dni" Type="char" Mode="In" />
+          <Parameter Name="corre" Type="varchar" Mode="In" />
+          <Parameter Name="fono" Type="char" Mode="In" />
+          <Parameter Name="esta" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_InsertarAsignatura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nomAsignatura" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_InsertarMatricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codAlu" Type="int" Mode="In" />
+          <Parameter Name="idCarr" Type="int" Mode="In" />
+          <Parameter Name="ciclo" Type="varchar" Mode="In" />
+          <Parameter Name="idSede" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_InsertarSede" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nomSede" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_listarAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_listarAsignatura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_listarMatricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_listarSede" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="BDInstituto2ModelStoreContainer">
+          <EntitySet Name="BOLETA" EntityType="Self.BOLETA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLEBOLETA" EntityType="Self.DETALLEBOLETA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBAlumno" EntityType="Self.TBAlumno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBAsignatura" EntityType="Self.TBAsignatura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCarrera" EntityType="Self.TBCarrera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLibro" EntityType="Self.TBLibro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBMatricula" EntityType="Self.TBMatricula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBProfesor" EntityType="Self.TBProfesor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBSede" EntityType="Self.TBSede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCarreraEstudiante" EntityType="Self.TBCarreraEstudiante" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TBCarreraEstudiante].[idCarrera] AS [idCarrera], 
+    [TBCarreraEstudiante].[codAlu] AS [codAlu]
+    FROM [dbo].[TBCarreraEstudiante] AS [TBCarreraEstudiante]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__BOLETA__codAlu__25869641" Association="Self.FK__BOLETA__codAlu__25869641">
+            <End Role="TBAlumno" EntitySet="TBAlumno" />
+            <End Role="BOLETA" EntitySet="BOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BOLETA__idCarrer__24927208" Association="Self.FK__BOLETA__idCarrer__24927208">
+            <End Role="TBCarrera" EntitySet="TBCarrera" />
+            <End Role="BOLETA" EntitySet="BOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETALLEBO__IDE_L__29572725" Association="Self.FK__DETALLEBO__IDE_L__29572725">
+            <End Role="TBLibro" EntitySet="TBLibro" />
+            <End Role="DETALLEBOLETA" EntitySet="DETALLEBOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETALLEBO__NUM_B__286302EC" Association="Self.FK__DETALLEBO__NUM_B__286302EC">
+            <End Role="BOLETA" EntitySet="BOLETA" />
+            <End Role="DETALLEBOLETA" EntitySet="DETALLEBOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBCarrera__codAl__145C0A3F" Association="Self.FK__TBCarrera__codAl__145C0A3F">
+            <End Role="TBAlumno" EntitySet="TBAlumno" />
+            <End Role="TBCarreraEstudiante" EntitySet="TBCarreraEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBCarrera__idCar__1367E606" Association="Self.FK__TBCarrera__idCar__1367E606">
+            <End Role="TBCarrera" EntitySet="TBCarrera" />
+            <End Role="TBCarreraEstudiante" EntitySet="TBCarreraEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBLibro__idCarre__21B6055D" Association="Self.FK__TBLibro__idCarre__21B6055D">
+            <End Role="TBCarrera" EntitySet="TBCarrera" />
+            <End Role="TBLibro" EntitySet="TBLibro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBMatricu__codAl__1DE57479" Association="Self.FK__TBMatricu__codAl__1DE57479">
+            <End Role="TBAlumno" EntitySet="TBAlumno" />
+            <End Role="TBMatricula" EntitySet="TBMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBMatricu__idCar__1CF15040" Association="Self.FK__TBMatricu__idCar__1CF15040">
+            <End Role="TBCarrera" EntitySet="TBCarrera" />
+            <End Role="TBMatricula" EntitySet="TBMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBMatricu__idSed__1ED998B2" Association="Self.FK__TBMatricu__idSed__1ED998B2">
+            <End Role="TBSede" EntitySet="TBSede" />
+            <End Role="TBMatricula" EntitySet="TBMatricula" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDInstituto2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOLETA">
+          <Key>
+            <PropertyRef Name="NUM_BOL" />
+          </Key>
+          <Property Name="NUM_BOL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FEC_BOL" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idCarrera" Type="Int32" Nullable="false" />
+          <Property Name="codAlu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBAlumno" Relationship="Self.FK__BOLETA__codAlu__25869641" FromRole="BOLETA" ToRole="TBAlumno" />
+          <NavigationProperty Name="TBCarrera" Relationship="Self.FK__BOLETA__idCarrer__24927208" FromRole="BOLETA" ToRole="TBCarrera" />
+          <NavigationProperty Name="DETALLEBOLETA" Relationship="Self.FK__DETALLEBO__NUM_B__286302EC" FromRole="BOLETA" ToRole="DETALLEBOLETA" />
+        </EntityType>
+        <EntityType Name="DETALLEBOLETA">
+          <Key>
+            <PropertyRef Name="NUM_BOL" />
+            <PropertyRef Name="IDE_Lib" />
+          </Key>
+          <Property Name="NUM_BOL" Type="Int32" Nullable="false" />
+          <Property Name="IDE_Lib" Type="Int32" Nullable="false" />
+          <Property Name="CAN_ART" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BOLETA" Relationship="Self.FK__DETALLEBO__NUM_B__286302EC" FromRole="DETALLEBOLETA" ToRole="BOLETA" />
+          <NavigationProperty Name="TBLibro" Relationship="Self.FK__DETALLEBO__IDE_L__29572725" FromRole="DETALLEBOLETA" ToRole="TBLibro" />
+        </EntityType>
+        <EntityType Name="TBAlumno">
+          <Key>
+            <PropertyRef Name="codAlu" />
+          </Key>
+          <Property Name="codAlu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dni" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="celular" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BOLETA" Relationship="Self.FK__BOLETA__codAlu__25869641" FromRole="TBAlumno" ToRole="BOLETA" />
+          <NavigationProperty Name="TBMatricula" Relationship="Self.FK__TBMatricu__codAl__1DE57479" FromRole="TBAlumno" ToRole="TBMatricula" />
+          <NavigationProperty Name="TBCarrera" Relationship="Self.TBCarreraEstudiante" FromRole="TBAlumno" ToRole="TBCarrera" />
+        </EntityType>
+        <EntityType Name="TBAsignatura">
+          <Key>
+            <PropertyRef Name="idAsignatura" />
+          </Key>
+          <Property Name="idAsignatura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomAsignatura" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBCarrera">
+          <Key>
+            <PropertyRef Name="idCarrera" />
+          </Key>
+          <Property Name="idCarrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomCarrera" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BOLETA" Relationship="Self.FK__BOLETA__idCarrer__24927208" FromRole="TBCarrera" ToRole="BOLETA" />
+          <NavigationProperty Name="TBLibro" Relationship="Self.FK__TBLibro__idCarre__21B6055D" FromRole="TBCarrera" ToRole="TBLibro" />
+          <NavigationProperty Name="TBMatricula" Relationship="Self.FK__TBMatricu__idCar__1CF15040" FromRole="TBCarrera" ToRole="TBMatricula" />
+          <NavigationProperty Name="TBAlumno" Relationship="Self.TBCarreraEstudiante" FromRole="TBCarrera" ToRole="TBAlumno" />
+        </EntityType>
+        <EntityType Name="TBLibro">
+          <Key>
+            <PropertyRef Name="IDE_Lib" />
+          </Key>
+          <Property Name="IDE_Lib" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DES_Lib" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idCarrera" Type="Int32" Nullable="false" />
+          <Property Name="PRE_Lib" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IMG_PRO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DETALLEBOLETA" Relationship="Self.FK__DETALLEBO__IDE_L__29572725" FromRole="TBLibro" ToRole="DETALLEBOLETA" />
+          <NavigationProperty Name="TBCarrera" Relationship="Self.FK__TBLibro__idCarre__21B6055D" FromRole="TBLibro" ToRole="TBCarrera" />
+        </EntityType>
+        <EntityType Name="TBMatricula">
+          <Key>
+            <PropertyRef Name="codMat" />
+          </Key>
+          <Property Name="codMat" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codAlu" Type="Int32" Nullable="false" />
+          <Property Name="idCarrera" Type="Int32" Nullable="false" />
+          <Property Name="ciclo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idSede" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBAlumno" Relationship="Self.FK__TBMatricu__codAl__1DE57479" FromRole="TBMatricula" ToRole="TBAlumno" />
+          <NavigationProperty Name="TBCarrera" Relationship="Self.FK__TBMatricu__idCar__1CF15040" FromRole="TBMatricula" ToRole="TBCarrera" />
+          <NavigationProperty Name="TBSede" Relationship="Self.FK__TBMatricu__idSed__1ED998B2" FromRole="TBMatricula" ToRole="TBSede" />
+        </EntityType>
+        <EntityType Name="TBProfesor">
+          <Key>
+            <PropertyRef Name="codProf" />
+          </Key>
+          <Property Name="codProf" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dni" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="celular" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBSede">
+          <Key>
+            <PropertyRef Name="idSede" />
+          </Key>
+          <Property Name="idSede" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomSede" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TBMatricula" Relationship="Self.FK__TBMatricu__idSed__1ED998B2" FromRole="TBSede" ToRole="TBMatricula" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BOLETA__codAlu__25869641">
+          <End Role="TBAlumno" Type="Self.TBAlumno" Multiplicity="1" />
+          <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBAlumno">
+              <PropertyRef Name="codAlu" />
+            </Principal>
+            <Dependent Role="BOLETA">
+              <PropertyRef Name="codAlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BOLETA__idCarrer__24927208">
+          <End Role="TBCarrera" Type="Self.TBCarrera" Multiplicity="1" />
+          <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCarrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="BOLETA">
+              <PropertyRef Name="idCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETALLEBO__NUM_B__286302EC">
+          <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="1" />
+          <End Role="DETALLEBOLETA" Type="Self.DETALLEBOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOLETA">
+              <PropertyRef Name="NUM_BOL" />
+            </Principal>
+            <Dependent Role="DETALLEBOLETA">
+              <PropertyRef Name="NUM_BOL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETALLEBO__IDE_L__29572725">
+          <End Role="TBLibro" Type="Self.TBLibro" Multiplicity="1" />
+          <End Role="DETALLEBOLETA" Type="Self.DETALLEBOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLibro">
+              <PropertyRef Name="IDE_Lib" />
+            </Principal>
+            <Dependent Role="DETALLEBOLETA">
+              <PropertyRef Name="IDE_Lib" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBMatricu__codAl__1DE57479">
+          <End Role="TBAlumno" Type="Self.TBAlumno" Multiplicity="1" />
+          <End Role="TBMatricula" Type="Self.TBMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBAlumno">
+              <PropertyRef Name="codAlu" />
+            </Principal>
+            <Dependent Role="TBMatricula">
+              <PropertyRef Name="codAlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBLibro__idCarre__21B6055D">
+          <End Role="TBCarrera" Type="Self.TBCarrera" Multiplicity="1" />
+          <End Role="TBLibro" Type="Self.TBLibro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCarrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="TBLibro">
+              <PropertyRef Name="idCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBMatricu__idCar__1CF15040">
+          <End Role="TBCarrera" Type="Self.TBCarrera" Multiplicity="1" />
+          <End Role="TBMatricula" Type="Self.TBMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCarrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="TBMatricula">
+              <PropertyRef Name="idCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBMatricu__idSed__1ED998B2">
+          <End Role="TBSede" Type="Self.TBSede" Multiplicity="1" />
+          <End Role="TBMatricula" Type="Self.TBMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBSede">
+              <PropertyRef Name="idSede" />
+            </Principal>
+            <Dependent Role="TBMatricula">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TBCarreraEstudiante">
+          <End Role="TBAlumno" Type="Self.TBAlumno" Multiplicity="*" />
+          <End Role="TBCarrera" Type="Self.TBCarrera" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BDInstituto2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOLETA" EntityType="Self.BOLETA" />
+          <EntitySet Name="DETALLEBOLETA" EntityType="Self.DETALLEBOLETA" />
+          <EntitySet Name="TBAlumno" EntityType="Self.TBAlumno" />
+          <EntitySet Name="TBAsignatura" EntityType="Self.TBAsignatura" />
+          <EntitySet Name="TBCarrera" EntityType="Self.TBCarrera" />
+          <EntitySet Name="TBLibro" EntityType="Self.TBLibro" />
+          <EntitySet Name="TBMatricula" EntityType="Self.TBMatricula" />
+          <EntitySet Name="TBProfesor" EntityType="Self.TBProfesor" />
+          <EntitySet Name="TBSede" EntityType="Self.TBSede" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK__BOLETA__codAlu__25869641" Association="Self.FK__BOLETA__codAlu__25869641">
+            <End Role="TBAlumno" EntitySet="TBAlumno" />
+            <End Role="BOLETA" EntitySet="BOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BOLETA__idCarrer__24927208" Association="Self.FK__BOLETA__idCarrer__24927208">
+            <End Role="TBCarrera" EntitySet="TBCarrera" />
+            <End Role="BOLETA" EntitySet="BOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETALLEBO__NUM_B__286302EC" Association="Self.FK__DETALLEBO__NUM_B__286302EC">
+            <End Role="BOLETA" EntitySet="BOLETA" />
+            <End Role="DETALLEBOLETA" EntitySet="DETALLEBOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETALLEBO__IDE_L__29572725" Association="Self.FK__DETALLEBO__IDE_L__29572725">
+            <End Role="TBLibro" EntitySet="TBLibro" />
+            <End Role="DETALLEBOLETA" EntitySet="DETALLEBOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBMatricu__codAl__1DE57479" Association="Self.FK__TBMatricu__codAl__1DE57479">
+            <End Role="TBAlumno" EntitySet="TBAlumno" />
+            <End Role="TBMatricula" EntitySet="TBMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBLibro__idCarre__21B6055D" Association="Self.FK__TBLibro__idCarre__21B6055D">
+            <End Role="TBCarrera" EntitySet="TBCarrera" />
+            <End Role="TBLibro" EntitySet="TBLibro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBMatricu__idCar__1CF15040" Association="Self.FK__TBMatricu__idCar__1CF15040">
+            <End Role="TBCarrera" EntitySet="TBCarrera" />
+            <End Role="TBMatricula" EntitySet="TBMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBMatricu__idSed__1ED998B2" Association="Self.FK__TBMatricu__idSed__1ED998B2">
+            <End Role="TBSede" EntitySet="TBSede" />
+            <End Role="TBMatricula" EntitySet="TBMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="TBCarreraEstudiante" Association="Self.TBCarreraEstudiante">
+            <End Role="TBAlumno" EntitySet="TBAlumno" />
+            <End Role="TBCarrera" EntitySet="TBCarrera" />
+          </AssociationSet>
+          <FunctionImport Name="actualizaProfe">
+            <Parameter Name="cod" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="celular" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="buscaProfe" ReturnType="Collection(BDInstituto2Model.buscaProfe_Result)">
+            <Parameter Name="cod" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="eliminaProfe">
+            <Parameter Name="cod" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="insertaProfe">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="celular" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="listaProfe" ReturnType="Collection(BDInstituto2Model.listaProfe_Result)" />
+          <FunctionImport Name="sp_RegistrarUsuario">
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Registrado" Mode="InOut" Type="Boolean" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ValidarUsuario" ReturnType="Collection(Int32)">
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Clave" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ActualizarAlumno">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nom" Mode="In" Type="String" />
+            <Parameter Name="ape" Mode="In" Type="String" />
+            <Parameter Name="dire" Mode="In" Type="String" />
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="corre" Mode="In" Type="String" />
+            <Parameter Name="fono" Mode="In" Type="String" />
+            <Parameter Name="esta" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ActualizarAsignatura">
+            <Parameter Name="idAsignatura" Mode="In" Type="Int32" />
+            <Parameter Name="nomAsignatura" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ActualizarMatricula">
+            <Parameter Name="codMat" Mode="In" Type="Int32" />
+            <Parameter Name="codAlu" Mode="In" Type="Int32" />
+            <Parameter Name="idCarr" Mode="In" Type="Int32" />
+            <Parameter Name="ciclo" Mode="In" Type="String" />
+            <Parameter Name="idSede" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ActualizarSede">
+            <Parameter Name="idSede" Mode="In" Type="Int32" />
+            <Parameter Name="nomSede" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_BuscarAlumno" ReturnType="Collection(BDInstituto2Model.usp_BuscarAlumno_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_BuscarAsignatura" ReturnType="Collection(BDInstituto2Model.usp_BuscarAsignatura_Result)">
+            <Parameter Name="idAsignatura" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_BuscarMatricula" ReturnType="Collection(BDInstituto2Model.usp_BuscarMatricula_Result)">
+            <Parameter Name="idMat" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_BuscarSede" ReturnType="Collection(BDInstituto2Model.usp_BuscarSede_Result)">
+            <Parameter Name="idSede" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_EliminarAsignatura">
+            <Parameter Name="idAsignatura" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_EliminarSede">
+            <Parameter Name="idSede" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertarAlumno">
+            <Parameter Name="nom" Mode="In" Type="String" />
+            <Parameter Name="ape" Mode="In" Type="String" />
+            <Parameter Name="dire" Mode="In" Type="String" />
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="corre" Mode="In" Type="String" />
+            <Parameter Name="fono" Mode="In" Type="String" />
+            <Parameter Name="esta" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertarAsignatura">
+            <Parameter Name="nomAsignatura" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertarMatricula">
+            <Parameter Name="codAlu" Mode="In" Type="Int32" />
+            <Parameter Name="idCarr" Mode="In" Type="Int32" />
+            <Parameter Name="ciclo" Mode="In" Type="String" />
+            <Parameter Name="idSede" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertarSede">
+            <Parameter Name="nomSede" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_listarAlumno" ReturnType="Collection(BDInstituto2Model.usp_listarAlumno_Result)" />
+          <FunctionImport Name="usp_listarAsignatura" ReturnType="Collection(BDInstituto2Model.usp_listarAsignatura_Result)" />
+          <FunctionImport Name="usp_listarMatricula" ReturnType="Collection(BDInstituto2Model.usp_listarMatricula_Result)" />
+          <FunctionImport Name="usp_listarSede" ReturnType="Collection(BDInstituto2Model.usp_listarSede_Result)" />
+        </EntityContainer>
+        <ComplexType Name="buscaProfe_Result">
+          <Property Type="Int32" Name="codProf" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="apellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="dni" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="correo" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="celular" Nullable="false" MaxLength="9" />
+        </ComplexType>
+        <ComplexType Name="listaProfe_Result">
+          <Property Type="Int32" Name="codProf" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="apellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="dni" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="correo" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="celular" Nullable="false" MaxLength="9" />
+        </ComplexType>
+        <ComplexType Name="usp_BuscarAlumno_Result">
+          <Property Type="Int32" Name="codAlu" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="apellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="direccion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="dni" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="correo" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="celular" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="usp_BuscarAsignatura_Result">
+          <Property Type="Int32" Name="idAsignatura" Nullable="false" />
+          <Property Type="String" Name="nomAsignatura" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="usp_BuscarMatricula_Result">
+          <Property Type="Int16" Name="codMat" Nullable="false" />
+          <Property Type="Int32" Name="codAlu" Nullable="false" />
+          <Property Type="Int32" Name="idCarrera" Nullable="false" />
+          <Property Type="String" Name="ciclo" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="idSede" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_BuscarSede_Result">
+          <Property Type="Int32" Name="idSede" Nullable="false" />
+          <Property Type="String" Name="nomSede" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="usp_listarAlumno_Result">
+          <Property Type="Int32" Name="codAlu" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="apellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="direccion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="dni" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="correo" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="celular" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="usp_listarAsignatura_Result">
+          <Property Type="Int32" Name="idAsignatura" Nullable="false" />
+          <Property Type="String" Name="nomAsignatura" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="usp_listarMatricula_Result">
+          <Property Type="Int16" Name="codMat" Nullable="false" />
+          <Property Type="Int32" Name="codAlu" Nullable="false" />
+          <Property Type="Int32" Name="idCarrera" Nullable="false" />
+          <Property Type="String" Name="ciclo" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="idSede" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_listarSede_Result">
+          <Property Type="Int32" Name="idSede" Nullable="false" />
+          <Property Type="String" Name="nomSede" Nullable="false" MaxLength="40" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDInstituto2ModelStoreContainer" CdmEntityContainer="BDInstituto2Entities">
+          <EntitySetMapping Name="BOLETA">
+            <EntityTypeMapping TypeName="BDInstituto2Model.BOLETA">
+              <MappingFragment StoreEntitySet="BOLETA">
+                <ScalarProperty Name="NUM_BOL" ColumnName="NUM_BOL" />
+                <ScalarProperty Name="FEC_BOL" ColumnName="FEC_BOL" />
+                <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+                <ScalarProperty Name="codAlu" ColumnName="codAlu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLEBOLETA">
+            <EntityTypeMapping TypeName="BDInstituto2Model.DETALLEBOLETA">
+              <MappingFragment StoreEntitySet="DETALLEBOLETA">
+                <ScalarProperty Name="NUM_BOL" ColumnName="NUM_BOL" />
+                <ScalarProperty Name="IDE_Lib" ColumnName="IDE_Lib" />
+                <ScalarProperty Name="CAN_ART" ColumnName="CAN_ART" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBAlumno">
+            <EntityTypeMapping TypeName="BDInstituto2Model.TBAlumno">
+              <MappingFragment StoreEntitySet="TBAlumno">
+                <ScalarProperty Name="codAlu" ColumnName="codAlu" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBAsignatura">
+            <EntityTypeMapping TypeName="BDInstituto2Model.TBAsignatura">
+              <MappingFragment StoreEntitySet="TBAsignatura">
+                <ScalarProperty Name="idAsignatura" ColumnName="idAsignatura" />
+                <ScalarProperty Name="nomAsignatura" ColumnName="nomAsignatura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCarrera">
+            <EntityTypeMapping TypeName="BDInstituto2Model.TBCarrera">
+              <MappingFragment StoreEntitySet="TBCarrera">
+                <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+                <ScalarProperty Name="nomCarrera" ColumnName="nomCarrera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLibro">
+            <EntityTypeMapping TypeName="BDInstituto2Model.TBLibro">
+              <MappingFragment StoreEntitySet="TBLibro">
+                <ScalarProperty Name="IDE_Lib" ColumnName="IDE_Lib" />
+                <ScalarProperty Name="DES_Lib" ColumnName="DES_Lib" />
+                <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+                <ScalarProperty Name="PRE_Lib" ColumnName="PRE_Lib" />
+                <ScalarProperty Name="IMG_PRO" ColumnName="IMG_PRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBMatricula">
+            <EntityTypeMapping TypeName="BDInstituto2Model.TBMatricula">
+              <MappingFragment StoreEntitySet="TBMatricula">
+                <ScalarProperty Name="codMat" ColumnName="codMat" />
+                <ScalarProperty Name="codAlu" ColumnName="codAlu" />
+                <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+                <ScalarProperty Name="ciclo" ColumnName="ciclo" />
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBProfesor">
+            <EntityTypeMapping TypeName="BDInstituto2Model.TBProfesor">
+              <MappingFragment StoreEntitySet="TBProfesor">
+                <ScalarProperty Name="codProf" ColumnName="codProf" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBSede">
+            <EntityTypeMapping TypeName="BDInstituto2Model.TBSede">
+              <MappingFragment StoreEntitySet="TBSede">
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+                <ScalarProperty Name="nomSede" ColumnName="nomSede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="BDInstituto2Model.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TBCarreraEstudiante" TypeName="BDInstituto2Model.TBCarreraEstudiante" StoreEntitySet="TBCarreraEstudiante">
+            <EndProperty Name="TBAlumno">
+              <ScalarProperty Name="codAlu" ColumnName="codAlu" />
+            </EndProperty>
+            <EndProperty Name="TBCarrera">
+              <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="actualizaProfe" FunctionName="BDInstituto2Model.Store.actualizaProfe" />
+          <FunctionImportMapping FunctionImportName="buscaProfe" FunctionName="BDInstituto2Model.Store.buscaProfe">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDInstituto2Model.buscaProfe_Result">
+                <ScalarProperty Name="codProf" ColumnName="codProf" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="eliminaProfe" FunctionName="BDInstituto2Model.Store.eliminaProfe" />
+          <FunctionImportMapping FunctionImportName="insertaProfe" FunctionName="BDInstituto2Model.Store.insertaProfe" />
+          <FunctionImportMapping FunctionImportName="listaProfe" FunctionName="BDInstituto2Model.Store.listaProfe">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDInstituto2Model.listaProfe_Result">
+                <ScalarProperty Name="codProf" ColumnName="codProf" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RegistrarUsuario" FunctionName="BDInstituto2Model.Store.sp_RegistrarUsuario" />
+          <FunctionImportMapping FunctionImportName="sp_ValidarUsuario" FunctionName="BDInstituto2Model.Store.sp_ValidarUsuario" />
+          <FunctionImportMapping FunctionImportName="usp_ActualizarAlumno" FunctionName="BDInstituto2Model.Store.usp_ActualizarAlumno" />
+          <FunctionImportMapping FunctionImportName="usp_ActualizarAsignatura" FunctionName="BDInstituto2Model.Store.usp_ActualizarAsignatura" />
+          <FunctionImportMapping FunctionImportName="usp_ActualizarMatricula" FunctionName="BDInstituto2Model.Store.usp_ActualizarMatricula" />
+          <FunctionImportMapping FunctionImportName="usp_ActualizarSede" FunctionName="BDInstituto2Model.Store.usp_ActualizarSede" />
+          <FunctionImportMapping FunctionImportName="usp_BuscarAlumno" FunctionName="BDInstituto2Model.Store.usp_BuscarAlumno">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDInstituto2Model.usp_BuscarAlumno_Result">
+                <ScalarProperty Name="codAlu" ColumnName="codAlu" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_BuscarAsignatura" FunctionName="BDInstituto2Model.Store.usp_BuscarAsignatura">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDInstituto2Model.usp_BuscarAsignatura_Result">
+                <ScalarProperty Name="idAsignatura" ColumnName="idAsignatura" />
+                <ScalarProperty Name="nomAsignatura" ColumnName="nomAsignatura" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_BuscarMatricula" FunctionName="BDInstituto2Model.Store.usp_BuscarMatricula">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDInstituto2Model.usp_BuscarMatricula_Result">
+                <ScalarProperty Name="codMat" ColumnName="codMat" />
+                <ScalarProperty Name="codAlu" ColumnName="codAlu" />
+                <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+                <ScalarProperty Name="ciclo" ColumnName="ciclo" />
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_BuscarSede" FunctionName="BDInstituto2Model.Store.usp_BuscarSede">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDInstituto2Model.usp_BuscarSede_Result">
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+                <ScalarProperty Name="nomSede" ColumnName="nomSede" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_EliminarAsignatura" FunctionName="BDInstituto2Model.Store.usp_EliminarAsignatura" />
+          <FunctionImportMapping FunctionImportName="usp_EliminarSede" FunctionName="BDInstituto2Model.Store.usp_EliminarSede" />
+          <FunctionImportMapping FunctionImportName="usp_InsertarAlumno" FunctionName="BDInstituto2Model.Store.usp_InsertarAlumno" />
+          <FunctionImportMapping FunctionImportName="usp_InsertarAsignatura" FunctionName="BDInstituto2Model.Store.usp_InsertarAsignatura" />
+          <FunctionImportMapping FunctionImportName="usp_InsertarMatricula" FunctionName="BDInstituto2Model.Store.usp_InsertarMatricula" />
+          <FunctionImportMapping FunctionImportName="usp_InsertarSede" FunctionName="BDInstituto2Model.Store.usp_InsertarSede" />
+          <FunctionImportMapping FunctionImportName="usp_listarAlumno" FunctionName="BDInstituto2Model.Store.usp_listarAlumno">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDInstituto2Model.usp_listarAlumno_Result">
+                <ScalarProperty Name="codAlu" ColumnName="codAlu" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_listarAsignatura" FunctionName="BDInstituto2Model.Store.usp_listarAsignatura">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDInstituto2Model.usp_listarAsignatura_Result">
+                <ScalarProperty Name="idAsignatura" ColumnName="idAsignatura" />
+                <ScalarProperty Name="nomAsignatura" ColumnName="nomAsignatura" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_listarMatricula" FunctionName="BDInstituto2Model.Store.usp_listarMatricula">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDInstituto2Model.usp_listarMatricula_Result">
+                <ScalarProperty Name="codMat" ColumnName="codMat" />
+                <ScalarProperty Name="codAlu" ColumnName="codAlu" />
+                <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+                <ScalarProperty Name="ciclo" ColumnName="ciclo" />
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_listarSede" FunctionName="BDInstituto2Model.Store.usp_listarSede">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDInstituto2Model.usp_listarSede_Result">
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+                <ScalarProperty Name="nomSede" ColumnName="nomSede" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
